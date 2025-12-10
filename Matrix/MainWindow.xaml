@@ -1,0 +1,73 @@
+﻿<Window x:Class="MatrixCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Матричный калькулятор" Height="800" Width="1200"
+        Background="#F0F0F0">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая часть: матрицы и результат -->
+        <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Top">
+            <TextBlock Text="Матричный калькулятор" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <!-- Ввод размеров -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Строки:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="RowInput" Width="40" Text="3"/>
+                <TextBlock Text="Столбцы:" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <TextBox x:Name="ColumnInput" Width="40" Text="3"/>
+                <Button Content="Применить" Click="ApplySize_Click" Margin="10,0,0,0"/>
+            </StackPanel>
+
+            <!-- Матрица A -->
+            <StackPanel x:Name="MatrixAPanel" Margin="0,10,0,10">
+                <TextBlock Text="Матрица A" FontWeight="Bold" FontSize="16"/>
+                <UniformGrid x:Name="MatrixAGrid" Rows="3" Columns="3" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <!-- Матрица B -->
+            <StackPanel x:Name="MatrixBPanel" Margin="0,10,0,10">
+                <TextBlock Text="Матрица B" FontWeight="Bold" FontSize="16"/>
+                <UniformGrid x:Name="MatrixBGrid" Rows="3" Columns="3" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <!-- Результат -->
+            <StackPanel x:Name="ResultPanel" Margin="0,10,0,0">
+                <TextBlock Text="Результат" FontWeight="Bold" FontSize="16"/>
+                <UniformGrid x:Name="ResultGrid" Rows="3" Columns="3" Margin="0,5,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Правая часть: панель управления -->
+        <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Top">
+            <TextBlock Text="Выбор матриц:" FontWeight="Bold" Margin="0,0,0,5"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <CheckBox x:Name="MatrixAEnabled" Content="Матрица A" IsChecked="True" Checked="MatrixToggle_Checked" Unchecked="MatrixToggle_Checked" Margin="0,0,10,0"/>
+                <CheckBox x:Name="MatrixBEnabled" Content="Матрица B" IsChecked="True" Checked="MatrixToggle_Checked" Unchecked="MatrixToggle_Checked"/>
+            </StackPanel>
+
+            <TextBlock Text="Операция:" FontWeight="Bold" Margin="0,0,0,5"/>
+            <ComboBox x:Name="OperationComboBox" Width="220" Margin="0,0,0,10">
+                <ComboBoxItem Content="Сложение (A + B)"/>
+                <ComboBoxItem Content="Вычитание (A - B)"/>
+                <ComboBoxItem Content="Умножение (A × B)"/>
+                <ComboBoxItem Content="Транспонировать"/>
+                <ComboBoxItem Content="Определитель"/>
+                <ComboBoxItem Content="След"/>
+                <ComboBoxItem Content="Умножить на число"/>
+                <ComboBoxItem Content="Обратная"/>
+                <ComboBoxItem Content="Ранг"/>
+            </ComboBox>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Число:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox x:Name="ScalarInput" Width="100" Text="1"/>
+            </StackPanel>
+
+            <Button x:Name="CalculateButton" Content="Посчитать" Width="150" Height="40" Background="#2196F3" Foreground="White" FontWeight="Bold" Click="CalculateButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
